@@ -34,3 +34,7 @@ Change the transparency level by:
 * [https://github.com/ivellioscolin/settransparency](https://github.com/ivellioscolin/settransparency)
 * [https://packagecontrol.io/packages/GlassIt](https://packagecontrol.io/packages/GlassIt)
 * [https://github.com/ivellioscolin/sublime-plugin-glassit](https://github.com/ivellioscolin/sublime-plugin-glassit)
+
+## Changelog
+
+See CHANGELOG.md
