@@ -12,7 +12,7 @@ function activate(context) {
     console.log('Congratulations, your extension "GlassIt VSC" is now active!');
 
     const ps = new shell();
-    ps.addCommand('(Get-Process -Name Code | where {$_.MainWindowHandle -ne 0}).Id');
+    ps.addCommand(`(ps -Name Code | where {$_.MainWindowHandle -ne 0} | where {$_.Path -eq (ps -Id ${process.pid}).Path}).Id`);
     ps.invoke().then(res => {
         console.log(res);
         const pid = Number(res);

@@ -29,7 +29,12 @@ Change the transparency level by:
 
 ## LINK
 
+* [https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
 * [https://github.com/s-nlf-fh/GlassIt-VSC](https://github.com/s-nlf-fh/GlassIt-VSC)
 * [https://github.com/ivellioscolin/settransparency](https://github.com/ivellioscolin/settransparency)
 * [https://packagecontrol.io/packages/GlassIt](https://packagecontrol.io/packages/GlassIt)
 * [https://github.com/ivellioscolin/sublime-plugin-glassit](https://github.com/ivellioscolin/sublime-plugin-glassit)
+
+## Changelog
+
+See CHANGELOG.md
