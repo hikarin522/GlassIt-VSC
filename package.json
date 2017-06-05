@@ -15,6 +15,23 @@
         "type": "git",
         "url": "https://github.com/s-nlf-fh/GlassIt-VSC.git"
     },
+    "badges": [
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg",
+            "description": "Latest Version",
+            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg",
+            "description": "Total Downloads",
+            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg",
+            "description": "Ratings",
+            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+        }
+    ],
     "bugs": {
         "url": "https://github.com/s-nlf-fh/GlassIt-VSC/issues",
         "email": "s.nlf.fh@gmail.com"
