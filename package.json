@@ -36,11 +36,6 @@
                     "type": "integer",
                     "default": 5,
                     "description": "Increment of alpha"
-                },
-                "glassit.path": {
-                    "type": "string",
-                    "default": "SetTransparency.exe",
-                    "description": "PATH to SetTransparency.exe"
                 }
             }
         },
