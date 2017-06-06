@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.1.1]
+- Optimisation
+
 ## [0.1.0]
 - Changed not to use 'SetTransparency.exe'
 - Delete 'glassit.path' from option
