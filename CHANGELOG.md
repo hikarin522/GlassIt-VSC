@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.1.2]
+- Fixed problem not working with PowerSell 2.0
+
 ## [0.1.1]
 - Optimisation
 
