@@ -13,7 +13,7 @@ function activate(context) {
     const path = context.asAbsolutePath('./SetTransparency.cs');
     const ps = new shell();
     context.subscriptions.push(ps);
-    ps.addCommand(`Add-Type  -Path '${path}'`);
+    ps.addCommand(`Add-Type -Path '${path}'`);
 
     function setAlpha(alpha) {
         if (alpha < 1) alpha = 1;
