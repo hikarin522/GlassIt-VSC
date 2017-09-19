@@ -1,95 +1,95 @@
 {
-    "name": "glassit",
-    "displayName": "GlassIt-VSC",
-    "description": "VS Code Extension to set window to transparent on Windows platform.",
-    "version": "0.1.2",
-    "publisher": "s-nlf-fh",
-    "license": "MIT",
-    "engines": {
-        "vscode": "^1.12.0"
+  "name": "glassit",
+  "displayName": "GlassIt-VSC",
+  "description": "VS Code Extension to set window to transparent on Windows platform.",
+  "version": "0.1.3",
+  "publisher": "s-nlf-fh",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-nlf-fh/GlassIt-VSC.git"
+  },
+  "badges": [
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg",
+      "description": "Latest Version",
+      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
     },
-    "categories": [
-        "Other"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/s-nlf-fh/GlassIt-VSC.git"
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg",
+      "description": "Total Downloads",
+      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
     },
-    "badges": [
-        {
-            "url": "https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg",
-            "description": "Latest Version",
-            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
-        },
-        {
-            "url": "https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg",
-            "description": "Total Downloads",
-            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
-        },
-        {
-            "url": "https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg",
-            "description": "Ratings",
-            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
-        }
-    ],
-    "bugs": {
-        "url": "https://github.com/s-nlf-fh/GlassIt-VSC/issues",
-        "email": "s.nlf.fh@gmail.com"
-    },
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./extension",
-    "contributes": {
-        "configuration": {
-            "title": "GlassIt VSC configuration",
-            "properties": {
-                "glassit.alpha": {
-                    "type": "integer",
-                    "default": 220,
-                    "description": "Transparency level [1-255]"
-                },
-                "glassit.step": {
-                    "type": "integer",
-                    "default": 5,
-                    "description": "Increment of alpha"
-                }
-            }
-        },
-        "commands": [
-            {
-                "command": "glassit.increase",
-                "title": "GlassIt: Increase the transparency"
-            },
-            {
-                "command": "glassit.decrease",
-                "title": "GlassIt: Decrease the transparency"
-            }
-        ],
-        "keybindings": [
-            {
-                "command": "glassit.increase",
-                "key": "ctrl+alt+z"
-            },
-            {
-                "command": "glassit.decrease",
-                "key": "ctrl+alt+c"
-            }
-        ]
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    },
-    "dependencies": {
-        "node-powershell": "^3.1.1"
+    {
+      "url": "https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg",
+      "description": "Ratings",
+      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
     }
+  ],
+  "bugs": {
+    "url": "https://github.com/s-nlf-fh/GlassIt-VSC/issues",
+    "email": "s.nlf.fh@gmail.com"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "configuration": {
+      "title": "GlassIt VSC configuration",
+      "properties": {
+        "glassit.alpha": {
+          "type": "integer",
+          "default": 220,
+          "description": "Transparency level [1-255]"
+        },
+        "glassit.step": {
+          "type": "integer",
+          "default": 5,
+          "description": "Increment of alpha"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "glassit.increase",
+        "title": "GlassIt: Increase the transparency"
+      },
+      {
+        "command": "glassit.decrease",
+        "title": "GlassIt: Decrease the transparency"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "glassit.increase",
+        "key": "ctrl+alt+z"
+      },
+      {
+        "command": "glassit.decrease",
+        "key": "ctrl+alt+c"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^8.0.28",
+    "eslint": "^4.7.1",
+    "mocha": "^3.5.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  },
+  "dependencies": {
+    "node-powershell": "^3.1.1"
+  }
 }
