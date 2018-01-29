@@ -2,7 +2,7 @@
     "name": "glassit",
     "displayName": "GlassIt-VSC",
     "description": "VS Code Extension to set window to transparent on Windows platform.",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "publisher": "s-nlf-fh",
     "license": "MIT",
     "engines": {
@@ -15,6 +15,23 @@
         "type": "git",
         "url": "https://github.com/s-nlf-fh/GlassIt-VSC.git"
     },
+    "badges": [
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg",
+            "description": "Latest Version",
+            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg",
+            "description": "Total Downloads",
+            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg",
+            "description": "Ratings",
+            "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+        }
+    ],
     "bugs": {
         "url": "https://github.com/s-nlf-fh/GlassIt-VSC/issues",
         "email": "s.nlf.fh@gmail.com"
