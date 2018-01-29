@@ -10,13 +10,15 @@ function activate(context) {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "GlassIt VSC" is now active!');
 
+    const path = context.asAbsolutePath('./SetTransparency.cs');
+    const ps = new shell();
+    context.subscriptions.push(ps);
+    ps.addCommand(`Add-Type  -Path '${path}'`);
+
     function setAlpha(alpha) {
         if (alpha < 1) alpha = 1;
         if (alpha > 255) alpha = 255;
 
-        const path = context.asAbsolutePath('./SetTransparency.cs');
-        const ps = new shell();
-        ps.addCommand(`Add-Type  -Path '${path}'`)
         ps.addCommand(`[CS]::SetTransParency(${process.pid}, ${alpha})`);
         ps.invoke().then(res => {
             console.log(res);
@@ -25,8 +27,6 @@ function activate(context) {
         }).catch(err => {
             console.error(err);
             vscode.window.showErrorMessage(`GlassIt Error: ${err}`);
-        }).then(() => {
-            ps.dispose();
         });
     }
 
