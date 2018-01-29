@@ -2,7 +2,6 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Linq;
 
 public static class CS {
 	private const int GWL_EXSTYLE = -20;
@@ -24,20 +23,26 @@ public static class CS {
 	private static extern bool SetLayeredWindowAttributes(int hWnd, uint crKey, byte bAlpha, uint dwFlags);
 
 	public static bool SetTransparency(int pid, byte alpha) {
-		var mainproc = Process.GetProcessById(pid);
-		var ret = from proc in Process.GetProcessesByName(mainproc.ProcessName)
-			where proc.StartInfo.FileName == mainproc.StartInfo.FileName
-			let hMainWnd = proc.MainWindowHandle.ToInt32()
-			where hMainWnd != 0
-			let tid = GetWindowThreadProcessId(hMainWnd, out pid)
-			select EnumThreadWindows(tid, (hWnd, lParam) => {
-				if (IsWindowVisible(hWnd)) {
-					var windowLong = GetWindowLong(hWnd, GWL_EXSTYLE);
-					SetWindowLong(hWnd, GWL_EXSTYLE, windowLong | WS_EX_LAYERED);
-					SetLayeredWindowAttributes(hWnd, 0, alpha, LWA_ALPHA);
+		Process mainproc = Process.GetProcessById(pid);
+		foreach (Process proc in Process.GetProcessesByName(mainproc.ProcessName)) {
+			if (proc.StartInfo.FileName == mainproc.StartInfo.FileName) {
+				int hMainWnd = proc.MainWindowHandle.ToInt32();
+				if (hMainWnd != 0) {
+					uint tid = GetWindowThreadProcessId(hMainWnd, out pid);
+					bool result = EnumThreadWindows(tid, delegate(int hWnd, int lParam) {
+						if (IsWindowVisible(hWnd)) {
+							int windowLong = GetWindowLong(hWnd, GWL_EXSTYLE);
+							SetWindowLong(hWnd, GWL_EXSTYLE, windowLong | WS_EX_LAYERED);
+							SetLayeredWindowAttributes(hWnd, 0, alpha, LWA_ALPHA);
+						}
+						return true;
+					}, 0);
+					if (!result) {
+						return false;
+					}
 				}
-				return true;
-			}, 0);
-		return ret.All(_ => _);
+			}
+		}
+		return true;
 	}
 }
