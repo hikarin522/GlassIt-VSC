@@ -19,7 +19,7 @@ function activate(context) {
         if (alpha < 1) alpha = 1;
         if (alpha > 255) alpha = 255;
 
-        ps.addCommand(`[CS]::SetTransParency(${process.pid}, ${alpha})`);
+        ps.addCommand(`[GlassIt.SetTransParency]::SetTransParency(${process.pid}, ${alpha})`);
         ps.invoke().then(res => {
             console.log(res);
             console.log(`GlassIt: set alpha ${alpha}`);
