@@ -2,18 +2,19 @@
   "name": "glassit",
   "displayName": "GlassIt-VSC",
   "description": "VS Code Extension to set window to transparent on Windows platform.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "s-nlf-fh",
   "license": "MIT",
   "engines": {
     "vscode": "^1.12.0"
   },
   "categories": [
+    "Themes",
     "Other"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/s-nlf-fh/GlassIt-VSC.git"
+    "url": "https://github.com/hikarin522/GlassIt-VSC.git"
   },
   "badges": [
     {
@@ -33,8 +34,8 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/s-nlf-fh/GlassIt-VSC/issues",
-    "email": "s.nlf.fh@gmail.com"
+    "url": "https://github.com/hikarin522/GlassIt-VSC/issues",
+    "email": "hikarin522@outlook.jp"
   },
   "activationEvents": [
     "*"
@@ -77,17 +78,9 @@
       }
     ]
   },
-  "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
-  },
+  "scripts": {},
   "devDependencies": {
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^8.0.28",
-    "eslint": "^4.7.1",
-    "mocha": "^3.5.3",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "vscode": "^1.1.28"
   },
   "dependencies": {
     "node-powershell": "^3.1.1"

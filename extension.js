@@ -8,6 +8,11 @@ const shell = require('node-powershell');
 function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
+    if (process.platform !== 'win32')
+    {
+        return;
+    }
+
     console.log('Congratulations, your extension "GlassIt VSC" is now active!');
 
     const path = context.asAbsolutePath('./SetTransparency.cs');
@@ -19,7 +24,7 @@ function activate(context) {
         if (alpha < 1) alpha = 1;
         if (alpha > 255) alpha = 255;
 
-        ps.addCommand(`[CS]::SetTransParency(${process.pid}, ${alpha})`);
+        ps.addCommand(`[GlassIt.SetTransParency]::SetTransParency(${process.pid}, ${alpha})`);
         ps.invoke().then(res => {
             console.log(res);
             console.log(`GlassIt: set alpha ${alpha}`);
