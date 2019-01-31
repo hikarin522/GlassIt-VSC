@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.1.4]
+- Fix to work only on windows
+
 ## [0.1.3]
 - update
 
