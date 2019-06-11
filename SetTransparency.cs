@@ -38,29 +38,34 @@ namespace GlassIt
             Process mainproc = Process.GetProcessById(pid);
             foreach (Process proc in Process.GetProcessesByName(mainproc.ProcessName))
             {
-                if (proc.StartInfo.FileName == mainproc.StartInfo.FileName)
+                if (proc.StartInfo.FileName != mainproc.StartInfo.FileName)
                 {
-                    int hMainWnd = proc.MainWindowHandle.ToInt32();
-                    if (hMainWnd != 0)
-                    {
-                        uint tid = GetWindowThreadProcessId(hMainWnd, out pid);
-                        bool result = EnumThreadWindows(tid, delegate(int hWnd, int lParam) {
-                            if (IsWindowVisible(hWnd))
-                            {
-                                int windowLong = GetWindowLong(hWnd, GWL_EXSTYLE);
-                                SetWindowLong(hWnd, GWL_EXSTYLE, windowLong | WS_EX_LAYERED);
-                                SetLayeredWindowAttributes(hWnd, 0, alpha, LWA_ALPHA);
-                            }
-                            return true;
-                        }, 0);
+                    continue;
+                }
 
-                        if (!result)
-                        {
-                            return false;
-                        }
+                int hMainWnd = proc.MainWindowHandle.ToInt32();
+                if (hMainWnd == 0)
+                {
+                    continue;
+                }
+
+                uint tid = GetWindowThreadProcessId(hMainWnd, out pid);
+                bool result = EnumThreadWindows(tid, delegate(int hWnd, int lParam) {
+                    if (IsWindowVisible(hWnd))
+                    {
+                        int windowLong = GetWindowLong(hWnd, GWL_EXSTYLE);
+                        SetWindowLong(hWnd, GWL_EXSTYLE, windowLong | WS_EX_LAYERED);
+                        SetLayeredWindowAttributes(hWnd, 0, alpha, LWA_ALPHA);
                     }
+                    return true;
+                }, 0);
+
+                if (!result)
+                {
+                    return false;
                 }
             }
+
             return true;
         }
     }
