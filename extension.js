@@ -9,7 +9,7 @@ function activate(context) {
 
     console.log('Congratulations, your extension "GlassIt VSC" is now active!');
 
-    const config = workspace.getConfiguration('glassit');
+    const config = () => workspace.getConfiguration('glassit');
 
     const path = context.asAbsolutePath('./SetTransparency.cs');
     const ps = new shell({
@@ -31,7 +31,7 @@ function activate(context) {
         ps.invoke().then(res => {
             console.log(res);
             console.log(`GlassIt: set alpha ${alpha}`);
-            config.update('alpha', alpha, true);
+            config().update('alpha', alpha, true);
         }).catch(err => {
             console.error(err);
             window.showErrorMessage(`GlassIt Error: ${err}`);
@@ -39,16 +39,16 @@ function activate(context) {
     }
 
     context.subscriptions.push(commands.registerCommand('glassit.increase', () => {
-        const alpha = config.get('alpha') - config.get('step');
+        const alpha = config().get('alpha') - config().get('step');
         setAlpha(alpha);
     }));
 
     context.subscriptions.push(commands.registerCommand('glassit.decrease', () => {
-        const alpha = config.get('alpha') + config.get('step');
+        const alpha = config().get('alpha') + config().get('step');
         setAlpha(alpha);
     }));
 
-    const alpha = config.get('alpha');
+    const alpha = config().get('alpha');
     setAlpha(alpha);
 }
 exports.activate = activate;
