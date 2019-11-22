@@ -71,6 +71,37 @@ namespace Windows
 
         [DllImport("user32.dll")]
         public static extern bool SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, LWA dwFlags);
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowCompositionAttribute(IntPtr hWnd, ref WINCOMPATTRDATA pAttrData);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetWindowCompositionAttribute(IntPtr hWnd, ref WINCOMPATTRDATA pAttrData);
+    }
+
+    internal static class DWM
+    {
+#if false
+        [DllImport("dwmapi.dll")]
+        public static extern void DwmEnableBlurBehindWindow();
+#endif
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct WINCOMPATTRDATA
+    {
+        public int attribute;
+        public IntPtr pData;
+        public uint ulDataSize;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct ACCENTPOLICY
+    {
+        public int nAccentState;
+        public int nFlags;
+        public uint nColor;
+        public int nAnimationId;
     }
 
     internal enum GWL: int
@@ -94,5 +125,16 @@ namespace Windows
     {
         COLORKEY = 1,
         ALPHA = 2,
+    }
+
+    internal enum WCA: int
+    {
+        ACCENT_POLICY = 19,
+    }
+
+    internal enum ACCENT: int
+    {
+        ENABLE_BLURBEHIND = 3,
+        ENABLE_ACRYLICBLURBEHIND = 4,
     }
 }
