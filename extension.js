@@ -12,7 +12,10 @@ function activate(context) {
     const config = workspace.getConfiguration('glassit');
 
     const path = context.asAbsolutePath('./SetTransparency.cs');
-    const ps = new shell();
+    const ps = new shell({
+        executionPolicy: 'RemoteSigned',
+        noProfile: true,
+    });
     context.subscriptions.push(ps);
     ps.addCommand('[Console]::OutputEncoding = [Text.Encoding]::UTF8');
     ps.addCommand(`Add-Type -Path '${path}'`);
