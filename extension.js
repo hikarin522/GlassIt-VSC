@@ -1,64 +1,58 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
+
+const { workspace, window, commands } = require('vscode');
 const shell = require('node-powershell');
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 function activate(context) {
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    if (process.platform !== 'win32')
-    {
+    if (process.platform !== 'win32') {
         return;
     }
 
     console.log('Congratulations, your extension "GlassIt VSC" is now active!');
 
+    const config = () => workspace.getConfiguration('glassit');
+
     const path = context.asAbsolutePath('./SetTransparency.cs');
-    const ps = new shell();
+    const ps = new shell({
+        executionPolicy: 'RemoteSigned',
+        noProfile: true,
+    });
     context.subscriptions.push(ps);
+    ps.addCommand('[Console]::OutputEncoding = [Text.Encoding]::UTF8');
     ps.addCommand(`Add-Type -Path '${path}'`);
 
     function setAlpha(alpha) {
-        if (alpha < 1) alpha = 1;
-        if (alpha > 255) alpha = 255;
+        if (alpha < 1) {
+            alpha = 1;
+        } else if (alpha > 255) {
+            alpha = 255;
+        }
 
         ps.addCommand(`[GlassIt.SetTransParency]::SetTransParency(${process.pid}, ${alpha})`);
         ps.invoke().then(res => {
             console.log(res);
             console.log(`GlassIt: set alpha ${alpha}`);
-            config.update('alpha', alpha, true);
+            config().update('alpha', alpha, true);
         }).catch(err => {
             console.error(err);
-            vscode.window.showErrorMessage(`GlassIt Error: ${err}`);
+            window.showErrorMessage(`GlassIt Error: ${err}`);
         });
     }
 
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    context.subscriptions.push(vscode.commands.registerCommand('glassit.increase', () => {
-        // The code you place here will be executed every time your command is executed
-        const config = vscode.workspace.getConfiguration('glassit');
-        const alpha = config.get('alpha') - config.get('step');
+    context.subscriptions.push(commands.registerCommand('glassit.increase', () => {
+        const alpha = config().get('alpha') - config().get('step');
         setAlpha(alpha);
     }));
 
-    context.subscriptions.push(vscode.commands.registerCommand('glassit.decrease', () => {
-        // The code you place here will be executed every time your command is executed
-        const config = vscode.workspace.getConfiguration('glassit');
-        const alpha = config.get('alpha') + config.get('step');
+    context.subscriptions.push(commands.registerCommand('glassit.decrease', () => {
+        const alpha = config().get('alpha') + config().get('step');
         setAlpha(alpha);
     }));
 
-    const config = vscode.workspace.getConfiguration('glassit');
-    const alpha = config.get('alpha');
+    const alpha = config().get('alpha');
     setAlpha(alpha);
 }
 exports.activate = activate;
 
-// this method is called when your extension is deactivated
 function deactivate() {
 }
 exports.deactivate = deactivate;

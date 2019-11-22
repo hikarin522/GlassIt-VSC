@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.1.6]
+- fix: error log output encoding
+- fix: powershell option execution policy
+- fix: powershell option noProfile
+
+## [0.1.5]
+
 ## [0.1.4]
 - Fix to work only on windows
 
