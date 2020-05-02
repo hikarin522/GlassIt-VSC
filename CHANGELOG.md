@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.0]
+- Add Linux suport　
+
 ## [0.1.6]
 - fix: error log output encoding
 - fix: powershell option execution policy
