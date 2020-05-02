@@ -4,14 +4,21 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg)](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
 [![Ratings](https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg)](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
 
-VS Code Extension to set window to transparent on Windows platform.
+VS Code Extension to set window to transparent on Windows and Linux platforms.
 
 This extension is the VS Code version of [GlassIt](https://packagecontrol.io/packages/GlassIt) of Sublime Text plugin.
 
 ## Features
 
 * With this extension, you can change the window transparency by key pressing.
-* Only works on Windows later than Windows 7.
+
+## Requirements
+
+### Windows
+  - Windows 7 or higher
+### Linux
+  - Xorg display server
+  - [xprop](https://www.x.org/releases/X11R7.5/doc/man/man1/xprop.1.html) package.
 
 ## Usage
 
