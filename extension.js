@@ -48,7 +48,7 @@ function activate(context) {
 
         // Retrieving all window ids
         const allWindowIdsOutput = cp.execSync(
-            `xprop -root | grep '_NET_CLIENT_LIST_STACKING(WINDOW)'`
+            `xprop -root | grep '_NET_CLIENT_LIST(WINDOW)'`
             ).toString();
 
         const allWindowIds = allWindowIdsOutput.substr(47, allWindowIdsOutput.length-48)
@@ -57,10 +57,10 @@ function activate(context) {
         const codeWindowIds = [];
 
         for(const windowId of allWindowIds){
-            
+
             // Checking the weather the window has a associated process
             const hasProcessId = cp.execSync(`xprop -id ${windowId} _NET_WM_PID`).toString();
-            
+
             if(!(hasProcessId.search('not found')+1)){
                 // Extract process id from the result
                const winProcessId = hasProcessId.replace(/([a-zA-Z_\(\)\s\=])/g,'');
