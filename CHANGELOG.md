@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.2]
+- bugfix
+
 ## [0.2.1]
 - Merge pull request #18
 
