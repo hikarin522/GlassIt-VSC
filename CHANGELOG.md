@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.1]
+- Merge pull request #18
+
 ## [0.2.0]
 - Add Linux suport　
 
