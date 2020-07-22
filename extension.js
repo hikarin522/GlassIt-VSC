@@ -51,8 +51,7 @@ function activate(context) {
             `xprop -root | grep '_NET_CLIENT_LIST(WINDOW)'`
             ).toString();
 
-        const allWindowIds = allWindowIdsOutput.substr(47, allWindowIdsOutput.length-48)
-        .split(', ');
+        const allWindowIds = allWindowIdsOutput.match(/0x[\da-f]+/ig);
 
         const codeWindowIds = [];
 
