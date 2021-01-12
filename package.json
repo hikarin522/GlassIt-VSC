@@ -66,6 +66,14 @@
       {
         "command": "glassit.decrease",
         "title": "GlassIt: Decrease the transparency"
+      },
+      {
+        "command": "glassit.maximize",
+        "title": "GlassIt: Maximize the transparency"
+      },
+      {
+        "command": "glassit.minimize",
+        "title": "GlassIt: Minimize the transparency"
       }
     ],
     "keybindings": [
@@ -76,6 +84,10 @@
       {
         "command": "glassit.decrease",
         "key": "ctrl+alt+c"
+      },
+      {
+        "command": "glassit.minimize",
+        "key" : "ctrl+alt+x"
       }
     ]
   },
