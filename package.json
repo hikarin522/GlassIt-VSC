@@ -8,7 +8,9 @@
   "engines": {
     "vscode": "^1.40.0"
   },
-  "extensionKind": ["ui"],
+  "extensionKind": [
+    "ui"
+  ],
   "categories": [
     "Themes",
     "Other"
@@ -87,7 +89,7 @@
       },
       {
         "command": "glassit.minimize",
-        "key" : "ctrl+alt+x"
+        "key": "ctrl+alt+x"
       }
     ]
   },
