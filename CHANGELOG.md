@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.3]
+- Add minimize, maximize command (#21)
+
 ## [0.2.2]
 - bugfix
 

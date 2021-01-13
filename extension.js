@@ -108,6 +108,14 @@ function activate(context) {
         setAlpha(alpha);
     }));
 
+    context.subscriptions.push(commands.registerCommand('glassit.maximize', () => {
+        setAlpha(1);
+    }));
+
+    context.subscriptions.push(commands.registerCommand('glassit.minimize', () => {
+        setAlpha(255);
+    }));
+
     const alpha = config().get('alpha');
     setAlpha(alpha);
 }

@@ -2,13 +2,15 @@
   "name": "glassit",
   "displayName": "GlassIt-VSC",
   "description": "VS Code Extension to set window to transparent on Windows and Linux platforms.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "publisher": "s-nlf-fh",
   "license": "MIT",
   "engines": {
     "vscode": "^1.40.0"
   },
-  "extensionKind": ["ui"],
+  "extensionKind": [
+    "ui"
+  ],
   "categories": [
     "Themes",
     "Other"
@@ -66,6 +68,14 @@
       {
         "command": "glassit.decrease",
         "title": "GlassIt: Decrease the transparency"
+      },
+      {
+        "command": "glassit.maximize",
+        "title": "GlassIt: Maximize the transparency"
+      },
+      {
+        "command": "glassit.minimize",
+        "title": "GlassIt: Minimize the transparency"
       }
     ],
     "keybindings": [
@@ -76,6 +86,10 @@
       {
         "command": "glassit.decrease",
         "key": "ctrl+alt+c"
+      },
+      {
+        "command": "glassit.minimize",
+        "key": "ctrl+alt+x"
       }
     ]
   },
