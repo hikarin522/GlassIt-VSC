@@ -43,7 +43,7 @@ function activate(context) {
         }
 
         // Retrieving the process ids of VS code
-        const processIds = cp.execSync('pgrep \'code\'').toString().split('\n');
+        const processIds = cp.execSync('pgrep \'code\' || pgrep \'codium\'').toString().split('\n');
         processIds.pop();
 
         // Retrieving all window ids
