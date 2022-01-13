@@ -10,7 +10,7 @@ This extension is the VS Code version of [GlassIt](https://packagecontrol.io/pac
 
 ## Features
 
-* With this extension, you can change the window transparency by key pressing.
+* With this extension, you can change the window transparency by key pressing "ctrl+alt+z" to increase the transparency, "ctrl+alt+c" to decrease.
 
 ## Requirements
 
