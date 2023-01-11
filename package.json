@@ -40,6 +40,11 @@
           "type": "integer",
           "default": 5,
           "description": "Increment of alpha"
+        },
+        "glassit.force_sway": {
+          "type": "boolean",
+          "default": false,
+          "description": "Force using swaymsg to set transparency"
         }
       }
     },
