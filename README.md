@@ -1,9 +1,5 @@
 # GlassIt-VSC
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg)](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg)](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg)](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
-
 VS Code Extension to set window to transparent on Windows and Linux platforms.
 
 This extension is the VS Code version of [GlassIt](https://packagecontrol.io/packages/GlassIt) of Sublime Text plugin.
