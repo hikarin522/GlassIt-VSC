@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.5]
+- Add Sway support (#44)
+
 ## [0.2.4]
 - Merge pull request #27
 
