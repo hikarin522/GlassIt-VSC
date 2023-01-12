@@ -2,7 +2,7 @@
   "name": "glassit",
   "displayName": "GlassIt-VSC",
   "description": "VS Code Extension to set window to transparent on Windows and Linux platforms.",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "publisher": "s-nlf-fh",
   "license": "MIT",
   "engines": {
@@ -21,18 +21,18 @@
   },
   "badges": [
     {
-      "url": "https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg",
-      "description": "Latest Version",
+      "url": "https://img.shields.io/visual-studio-marketplace/v/s-nlf-fh.glassit",
+      "description": "Version",
       "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
     },
     {
-      "url": "https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg",
-      "description": "Total Downloads",
+      "url": "https://img.shields.io/visual-studio-marketplace/i/s-nlf-fh.glassit",
+      "description": "Installs",
       "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
     },
     {
-      "url": "https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg",
-      "description": "Ratings",
+      "url": "https://img.shields.io/visual-studio-marketplace/r/s-nlf-fh.glassit",
+      "description": "Rating",
       "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
     }
   ],
@@ -57,6 +57,11 @@
           "type": "integer",
           "default": 5,
           "description": "Increment of alpha"
+        },
+        "glassit.force_sway": {
+          "type": "boolean",
+          "default": false,
+          "description": "Force using swaymsg to set transparency"
         }
       }
     },
@@ -94,7 +99,6 @@
     ]
   },
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
     "node-powershell": "^4.0.0"
   }
