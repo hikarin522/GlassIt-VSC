@@ -99,7 +99,6 @@
     ]
   },
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
     "node-powershell": "^4.0.0"
   }
