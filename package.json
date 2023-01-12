@@ -19,23 +19,6 @@
     "type": "git",
     "url": "https://github.com/hikarin522/GlassIt-VSC.git"
   },
-  "badges": [
-    {
-      "url": "https://vsmarketplacebadge.apphb.com/version/s-nlf-fh.glassit.svg",
-      "description": "Latest Version",
-      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
-    },
-    {
-      "url": "https://vsmarketplacebadge.apphb.com/installs/s-nlf-fh.glassit.svg",
-      "description": "Total Downloads",
-      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
-    },
-    {
-      "url": "https://vsmarketplacebadge.apphb.com/rating/s-nlf-fh.glassit.svg",
-      "description": "Ratings",
-      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
-    }
-  ],
   "bugs": {
     "url": "https://github.com/hikarin522/GlassIt-VSC/issues",
     "email": "hikarin522@outlook.jp"
@@ -57,6 +40,11 @@
           "type": "integer",
           "default": 5,
           "description": "Increment of alpha"
+        },
+        "glassit.force_sway": {
+          "type": "boolean",
+          "default": false,
+          "description": "Force using swaymsg to set transparency"
         }
       }
     },
