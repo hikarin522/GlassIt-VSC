@@ -1,8 +1,12 @@
 # GlassIt-VSC
 
+[![VSMV]][VSM]
+[![VSMI]][VSM]
+[![VSMR]][VSM]
+
 VS Code Extension to set window to transparent on Windows and Linux platforms.
 
-This extension is the VS Code version of [GlassIt](https://packagecontrol.io/packages/GlassIt) of Sublime Text plugin.
+This extension is the VS Code version of [GlassIt] of Sublime Text plugin.
 
 ## Features
 
@@ -14,7 +18,7 @@ This extension is the VS Code version of [GlassIt](https://packagecontrol.io/pac
   - Windows 7 or higher
 ### Linux
   - Xorg display server
-  - [xprop](https://www.x.org/releases/X11R7.5/doc/man/man1/xprop.1.html) package.
+  - [xprop] package.
 
 ## Usage
 
@@ -28,11 +32,18 @@ Change the transparency level by:
 
 ## LINK
 
-* [https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit)
-* [https://github.com/hikarin522/GlassIt-VSC](https://github.com/hikarin522/GlassIt-VSC)
-* [https://packagecontrol.io/packages/GlassIt](https://packagecontrol.io/packages/GlassIt)
-* [https://github.com/ivellioscolin/sublime-plugin-glassit](https://github.com/ivellioscolin/sublime-plugin-glassit)
+* <https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit>
+* <https://github.com/hikarin522/GlassIt-VSC>
+* <https://packagecontrol.io/packages/GlassIt>
+* <https://github.com/ivellioscolin/sublime-plugin-glassit>
 
 ## Changelog
 
 See CHANGELOG.md
+
+[VSM]:https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit
+[VSMV]:https://img.shields.io/visual-studio-marketplace/v/s-nlf-fh.glassit
+[VSMI]:https://img.shields.io/visual-studio-marketplace/i/s-nlf-fh.glassit
+[VSMR]:https://img.shields.io/visual-studio-marketplace/r/s-nlf-fh.glassit
+[GlassIt]:https://packagecontrol.io/packages/GlassIt
+[xprop]:https://www.x.org/releases/X11R7.5/doc/man/man1/xprop.1.html

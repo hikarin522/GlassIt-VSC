@@ -19,6 +19,23 @@
     "type": "git",
     "url": "https://github.com/hikarin522/GlassIt-VSC.git"
   },
+  "badges": [
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/v/s-nlf-fh.glassit",
+      "description": "Version",
+      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+    },
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/i/s-nlf-fh.glassit",
+      "description": "Installs",
+      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+    },
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/r/s-nlf-fh.glassit",
+      "description": "Rating",
+      "href": "https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/hikarin522/GlassIt-VSC/issues",
     "email": "hikarin522@outlook.jp"
