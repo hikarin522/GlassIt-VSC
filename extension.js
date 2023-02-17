@@ -49,7 +49,7 @@ function activate(context) {
             }
 
             // Retrieve the process name for the current VS Code instance (Solution for using forks of VS Code)
-            const process_name = process.title.substring(process.title.lastIndexOf('/') + 1);
+            const process_name = process.execPath.substring(process.execPath.lastIndexOf('/') + 1);
 
             // Retrieving the process ids of VS code
             const processIds = cp.execSync(`pgrep ${process_name}`).toString().split('\n');
