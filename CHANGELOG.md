@@ -1,13 +1,16 @@
 # Change Log
 
+## [0.2.6]
+- Merge pull request #46
+
 ## [0.2.5]
-- Add Sway support (#44)
+- Add Sway support #44
 
 ## [0.2.4]
 - Merge pull request #27
 
 ## [0.2.3]
-- Add minimize, maximize command (#21)
+- Add minimize, maximize command #21
 
 ## [0.2.2]
 - bugfix
@@ -16,7 +19,7 @@
 - Merge pull request #18
 
 ## [0.2.0]
-- Add Linux suport (#15)
+- Add Linux suport #15
 
 ## [0.1.6]
 - fix: error log output encoding
