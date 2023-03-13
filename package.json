@@ -4,6 +4,7 @@
   "description": "VS Code Extension to set window to transparent on Windows and Linux platforms.",
   "version": "0.2.6",
   "publisher": "s-nlf-fh",
+  "icon": "icon.png",
   "license": "MIT",
   "engines": {
     "vscode": "^1.40.0"
