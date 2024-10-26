@@ -49,6 +49,21 @@
     "configuration": {
       "title": "GlassIt VSC configuration",
       "properties": {
+        "glassit.enableToast": {
+          "type": "boolean",
+          "default": true,
+          "description": "if toast messages are enabled"
+        },
+        "glassit.toggle": {
+          "type": "boolean",
+          "default": true,
+          "description": "if alpha is set to 255 or stored alpha"
+        },
+        "glassit.storedAlpha": {
+          "type": "integer",
+          "default": 220,
+          "description": "Stored Transparency level [1-255] (used for toggling on and off)"
+        },
         "glassit.alpha": {
           "type": "integer",
           "default": 220,
@@ -82,6 +97,10 @@
       {
         "command": "glassit.minimize",
         "title": "GlassIt: Minimize the transparency"
+      },
+      {
+        "command": "glassit.toggle",
+        "title": "GlassIt: Toggles the transparency"
       }
     ],
     "keybindings": [
@@ -95,6 +114,10 @@
       },
       {
         "command": "glassit.minimize",
+        "key": "ctrl+alt+v"
+      },
+      {
+        "command": "glassit.toggle",
         "key": "ctrl+alt+x"
       }
     ]

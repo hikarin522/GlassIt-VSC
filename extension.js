@@ -114,7 +114,14 @@ function activate(context) {
     } else {
         return;
     }
-
+    function pushMessage(message)
+    {
+        const isToastEnabled = config().get('enableToast');
+        if (isToastEnabled)
+        {
+            window.showInformationMessage(message);
+        }
+    }
     console.log('Congratulations, your extension "GlassIt VSC" is now active!');
 
     context.subscriptions.push(commands.registerCommand('glassit.increase', () => {
@@ -133,6 +140,29 @@ function activate(context) {
 
     context.subscriptions.push(commands.registerCommand('glassit.minimize', () => {
         setAlpha(255);
+    }));
+
+    context.subscriptions.push(commands.registerCommand('glassit.toggle', () => {
+        const isToggled = config().get('toggle');
+        const toastText = !isToggled ? 'Off' : 'On';
+        pushMessage(`Toggling GlassIt - ${toastText}`);
+        config().update('toggle', !isToggled, true);
+
+        let alpha = 255;
+
+        if (!isToggled) 
+        {
+            let currentAlpha = config().get('alpha');
+            console.log(`Storing Alpha: ${currentAlpha}`); 
+            config().update('storedAlpha', currentAlpha, true);
+        }
+        else
+        {
+            alpha = config().get('storedAlpha');
+            console.log(`Setting Alpha: ${alpha}`); 
+        }
+
+        setAlpha(alpha);
     }));
 
     const alpha = config().get('alpha');
