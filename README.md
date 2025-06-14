@@ -23,14 +23,16 @@ This extension is the VS Code version of [GlassIt] of Sublime Text plugin.
 ## Usage
 
 Change the transparency level by:
-* Press "ctrl+alt+z" to increase the transparency, "ctrl+alt+c" to decrease.
+* Press `ctrl+alt+z` to increase the transparency.
+- Press `ctrl+alt+c` to decrease the transparency.
 
 ## Extension Settings
 
 * `glassit.alpha` (`integer`): Transparency level [1-255].
 * `glassit.step` (`integer`): Increment of alpha.
+* `glassit.vscodeVariant` (`string`): Select the VS Code variant to target for transparency: [auto] to auto detect process, [code] to force Visual Studio Code, [codium] to force VSCodium.
 
-## LINK
+## LINKS
 
 * <https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit>
 * <https://github.com/hikarin522/GlassIt-VSC>
