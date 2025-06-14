@@ -23,7 +23,7 @@ function activate(context) {
             ? 'codium'
             : 'code';
         const variant = configuredVariant || detectedProcessName;
-        console.log (`Glassit set to ${varient}.`)
+        console.log (`Glassit set to ${variant}.`)
         function setAlpha(alpha) {
             if (alpha < 1) {
                 alpha = 1;
