@@ -2,7 +2,7 @@
   "name": "glassit",
   "displayName": "GlassIt-VSC",
   "description": "VS Code Extension to set window to transparent on Windows and Linux platforms.",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "publisher": "s-nlf-fh",
   "license": "MIT",
   "engines": {
@@ -62,6 +62,12 @@
           "type": "boolean",
           "default": false,
           "description": "Force using swaymsg to set transparency"
+        },
+        "glassit.vscodeVariant": {
+          "type": "string",
+          "default": "auto",
+          "enum": ["auto", "code", "codium"],
+          "description": "Select the VS Code variant to target for transparency. 'auto' detects based on running process, 'code' forces Visual Studio Code, and 'codium' forces VSCodium."
         }
       }
     },

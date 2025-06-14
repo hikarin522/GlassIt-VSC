@@ -17,6 +17,13 @@ function activate(context) {
         ps.addCommand('[Console]::OutputEncoding = [Text.Encoding]::UTF8');
         ps.addCommand(`Add-Type -Path '${path}'`);
 
+        // Determine VSCode variant 
+        const configuredVariant = config().get('vscodeVariant');
+        const detectedProcessName = process.execPath.toLowerCase().includes('codium')
+            ? 'codium'
+            : 'code';
+        const variant = configuredVariant || detectedProcessName;
+        console.log (`Glassit set to ${varient}.`)
         function setAlpha(alpha) {
             if (alpha < 1) {
                 alpha = 1;
@@ -40,18 +47,29 @@ function activate(context) {
         const codeWindowIds = [];
 
         if (config().get('force_sway') === false) {
-            // Checking the weather xprop has installed
+            // Checking whether xprop is installed
             try {
-                cp.spawnSync('which xprop').toString();
+                cp.spawnSync('which xprop');
             } catch (error) {
                 console.error(`GlassIt Error: Please install xprop package to use GlassIt.`);
                 return;
             }
 
-            // Retrieve the process name for the current VS Code instance (Solution for using forks of VS Code)
-            const process_name = process.execPath.substring(process.execPath.lastIndexOf('/') + 1);
+            // Determine executable name based on config setting
+            const variantSetting = config().get('vscodeVariant') || 'auto';
+            let process_name = 'code';
 
-            // Retrieving the process ids of VS code
+            if (variantSetting === 'codium') {
+                process_name = 'codium';
+            } else if (variantSetting === 'code') {
+                process_name = 'code';
+            } else {
+                // Auto-detect based on execPath
+                const execPath = process.execPath.toLowerCase();
+                process_name = execPath.includes('codium') ? 'codium' : 'code';
+            }
+
+            // Retrieving the process ids of VS Code / Codium
             const processIds = cp.execSync(`pgrep ${process_name}`).toString().split('\n');
             processIds.pop();
 
@@ -63,8 +81,7 @@ function activate(context) {
             const allWindowIds = allWindowIdsOutput.match(/0x[\da-f]+/ig);
 
             for (const windowId of allWindowIds) {
-
-                // Checking the weather the window has a associated process
+                // Checking whether the window has an associated process
                 const hasProcessId = cp.execSync(`xprop -id ${windowId} _NET_WM_PID`).toString();
 
                 if (!(hasProcessId.search('not found') + 1)) {
@@ -91,19 +108,19 @@ function activate(context) {
                         console.error(`GlassIt error: ${error}`);
                         return;
                     }
-    
+
                     console.log(stdout.toString());
                     console.log(`GlassIt: set alpha ${alpha}`);
                     config().update('alpha', alpha, true);
-                })
+                });
             } else {
                 for (const codeWindowId of codeWindowIds) {
-                    cp.exec(`xprop  -id ${codeWindowId} -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY $(printf 0x%x $((0xffffffff * ${alpha} / 255)))`, function (error, stdout, stderr) {
+                    cp.exec(`xprop -id ${codeWindowId} -f _NET_WM_WINDOW_OPACITY 32c -set _NET_WM_WINDOW_OPACITY $(printf 0x%x $((0xffffffff * ${alpha} / 255)))`, function (error, stdout, stderr) {
                         if (error) {
                             console.error(`GlassIt error: ${error}`);
                             return;
                         }
-    
+
                         console.log(stdout.toString());
                         console.log(`GlassIt: set alpha ${alpha}`);
                         config().update('alpha', alpha, true);
