@@ -51,17 +51,40 @@
         "glassit.alpha": {
           "type": "integer",
           "default": 220,
+          "minimum": 1,
+          "maximum": 255,
           "description": "Transparency level [1-255]"
         },
         "glassit.step": {
           "type": "integer",
           "default": 5,
+          "minimum": 1,
+          "maximum": 50,
           "description": "Increment of alpha"
         },
         "glassit.force_sway": {
           "type": "boolean",
           "default": false,
-          "description": "Force using swaymsg to set transparency"
+          "description": "Force using compositor commands (sway/hyprland) to set transparency instead of X11"
+        },
+        "glassit.alpha_light": {
+          "type": "integer",
+          "default": 220,
+          "minimum": 1,
+          "maximum": 255,
+          "description": "Transparency level for light themes [1-255] (requires restart)"
+        },
+        "glassit.alpha_dark": {
+          "type": "integer",
+          "default": 220,
+          "minimum": 1,
+          "maximum": 255,
+          "description": "Transparency level for dark themes [1-255] (requires restart)"
+        },
+        "glassit.enable_keybindings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable keyboard shortcuts for transparency control"
         }
       }
     },
@@ -81,20 +104,44 @@
       {
         "command": "glassit.minimize",
         "title": "GlassIt: Minimize the transparency"
+      },
+      {
+        "command": "glassit.toggle_preset",
+        "title": "GlassIt: Toggle preset transparency (10%)"
+      },
+      {
+        "command": "glassit.set_25",
+        "title": "GlassIt: Set transparency to 25%"
+      },
+      {
+        "command": "glassit.set_50",
+        "title": "GlassIt: Set transparency to 50%"
+      },
+      {
+        "command": "glassit.set_75",
+        "title": "GlassIt: Set transparency to 75%"
       }
     ],
     "keybindings": [
       {
         "command": "glassit.increase",
-        "key": "ctrl+alt+z"
+        "key": "ctrl+alt+z",
+        "when": "config.glassit.enable_keybindings"
       },
       {
         "command": "glassit.decrease",
-        "key": "ctrl+alt+c"
+        "key": "ctrl+alt+c",
+        "when": "config.glassit.enable_keybindings"
       },
       {
         "command": "glassit.minimize",
-        "key": "ctrl+alt+x"
+        "key": "ctrl+alt+x",
+        "when": "config.glassit.enable_keybindings"
+      },
+      {
+        "command": "glassit.toggle_preset",
+        "key": "ctrl+alt+t",
+        "when": "config.glassit.enable_keybindings"
       }
     ]
   },
