@@ -11,24 +11,55 @@ This extension is the VS Code version of [GlassIt] of Sublime Text plugin.
 ## Features
 
 * With this extension, you can change the window transparency by key pressing.
+* Supports Windows (Win32) and Linux (X11 and Wayland with Sway/Hyprland).
+* Automatic detection of VS Code variants (Code, Code-OSS, VSCodium).
+* Separate transparency settings for light and dark themes.
+* Preset transparency levels with keyboard shortcuts.
+* Optional keyboard shortcut disable.
 
 ## Requirements
 
 ### Windows
   - Windows 7 or higher
+  - PowerShell with appropriate execution policy
 ### Linux
-  - Xorg display server
-  - [xprop] package.
+  - **X11 (Traditional)**: [xprop] package
+  - **Wayland**: Sway or Hyprland compositor (auto-detected)
 
 ## Usage
 
 Change the transparency level by:
-* Press "ctrl+alt+z" to increase the transparency, "ctrl+alt+c" to decrease.
+* Press "Ctrl+Alt+Z" to increase transparency, "Ctrl+Alt+C" to decrease
+* Press "Ctrl+Alt+X" to minimize transparency (opaque)
+* Press "Ctrl+Alt+T" to toggle preset transparency (10%)
+* Use Command Palette: "GlassIt: [command name]"
+* View current transparency level in the status bar (click to reset)
 
 ## Extension Settings
 
-* `glassit.alpha` (`integer`): Transparency level [1-255].
-* `glassit.step` (`integer`): Increment of alpha.
+* `glassit.alpha` (`integer`): Default transparency level [1-255]. (255 = opaque, 1 = nearly transparent)
+* `glassit.step` (`integer`): Increment of alpha when using increase/decrease commands.
+* `glassit.force_sway` (`boolean`): Force using compositor commands instead of X11 (auto-detected).
+* `glassit.alpha_light` (`integer`): Transparency level for light themes [1-255].
+* `glassit.alpha_dark` (`integer`): Transparency level for dark themes [1-255].
+* `glassit.enable_keybindings` (`boolean`): Enable/disable keyboard shortcuts.
+* `glassit.show_status` (`boolean`): Show transparency level in status bar.
+
+## Troubleshooting
+
+### Commands not found
+1. Check VS Code Developer Console (Help → Toggle Developer Tools → Console) for error messages
+2. Ensure the extension is enabled and activated
+3. On Windows: Check PowerShell execution policy
+4. On Linux: Install `xprop` package or enable `force_sway` for Wayland
+
+### Linux Compatibility
+- **X11**: Requires `xprop` package (`sudo apt install x11-utils` on Ubuntu/Debian)
+- **Wayland**: Automatically detected for Sway and Hyprland
+- **Other compositors**: May require manual configuration of compositor-specific transparency
+
+### VSCodium Support
+The extension now automatically detects VSCodium and other VS Code forks.
 
 ## LINK
 
