@@ -1,6 +1,6 @@
 # Change Log
 
-## [0.2.7] - Unreleased
+## [0.2.7]
 ### Added
 - Improved error handling and logging for better debugging
 - Support for VSCodium and other VS Code forks
@@ -11,6 +11,9 @@
 - Option to disable keyboard shortcuts
 - Better Windows PowerShell error handling
 - Comprehensive troubleshooting documentation
+- Transparency counter in status bar with click-to-reset functionality
+- Reset to default transparency command
+- Throttled transparency updates to prevent window minimizing issues
 
 ### Fixed
 - Commands not found issue on Windows 11 (#75, #63)
@@ -18,6 +21,7 @@
 - Improved process detection for different VS Code installations
 - Better error messages for unsupported platforms
 - Enhanced Linux compositor auto-detection
+- Potential fix for window minimizing issue on Windows (#50)
 
 ### Changed
 - Improved force_sway description to include Hyprland

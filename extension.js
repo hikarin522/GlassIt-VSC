@@ -6,6 +6,30 @@ function activate(context) {
 
     const config = () => workspace.getConfiguration('glassit');
     let previousAlpha = null; // For toggle functionality
+    let statusBarItem; // Status bar item for transparency display
+    let alphaUpdateTimeout; // Throttle alpha updates to prevent issues
+
+    // Create status bar item
+    function createStatusBarItem() {
+        if (config().get('show_status')) {
+            statusBarItem = window.createStatusBarItem('glassit.status', 1, 100);
+            statusBarItem.command = 'glassit.reset_default';
+            statusBarItem.tooltip = 'Click to reset to default transparency';
+            context.subscriptions.push(statusBarItem);
+            updateStatusBar(config().get('alpha'));
+            statusBarItem.show();
+        }
+    }
+
+    // Update status bar with current transparency
+    function updateStatusBar(alpha) {
+        if (statusBarItem && config().get('show_status')) {
+            const opacity = Math.round((alpha / 255) * 100);
+            const transparency = 100 - opacity;
+            statusBarItem.text = `$(eye) ${transparency}%`;
+            statusBarItem.tooltip = `Transparency: ${transparency}% (Alpha: ${alpha}) - Click to reset`;
+        }
+    }
 
     // Theme detection function (for future use with separate light/dark alpha)
     function getCurrentTheme() {
@@ -63,16 +87,25 @@ function activate(context) {
                 alpha = 255;
             }
 
-            console.log(`GlassIt: Setting alpha to ${alpha} for process ${process.pid}`);
-            ps.addCommand(`[GlassIt.SetTransParency]::SetTransParency(${process.pid}, ${alpha})`);
-            ps.invoke().then(res => {
-                console.log('GlassIt: PowerShell result:', res);
-                console.log(`GlassIt: Successfully set alpha to ${alpha}`);
-                config().update('alpha', alpha, true);
-            }).catch(err => {
-                console.error('GlassIt: PowerShell execution error:', err);
-                window.showErrorMessage(`GlassIt Error: ${err.message || err}`);
-            });
+            // Throttle rapid successive calls to prevent window issues
+            if (alphaUpdateTimeout) {
+                clearTimeout(alphaUpdateTimeout);
+            }
+            
+            alphaUpdateTimeout = setTimeout(() => {
+                console.log(`GlassIt: Setting alpha to ${alpha} for process ${process.pid}`);
+                ps.addCommand(`[GlassIt.SetTransParency]::SetTransParency(${process.pid}, ${alpha})`);
+                ps.invoke().then(res => {
+                    console.log('GlassIt: PowerShell result:', res);
+                    console.log(`GlassIt: Successfully set alpha to ${alpha}`);
+                    config().update('alpha', alpha, true);
+                    updateStatusBar(alpha);
+                }).catch(err => {
+                    console.error('GlassIt: PowerShell execution error:', err);
+                    window.showErrorMessage(`GlassIt Error: ${err.message || err}`);
+                });
+                alphaUpdateTimeout = null;
+            }, 50); // 50ms delay to prevent rapid calls
         }
     } else if (process.platform == 'linux') {
 
@@ -266,6 +299,7 @@ function activate(context) {
                                 } else {
                                     console.log('GlassIt: Hyprland fallback command succeeded');
                                     config().update('alpha', alpha, true);
+                                    updateStatusBar(alpha);
                                 }
                             });
                         } else {
@@ -277,6 +311,7 @@ function activate(context) {
                     console.log('GlassIt: Compositor output:', stdout.toString().trim());
                     console.log(`GlassIt: Successfully set alpha to ${alpha} via ${detectedCompositor || 'compositor'}`);
                     config().update('alpha', alpha, true);
+                    updateStatusBar(alpha);
                 });
             } else {
                 console.log(`GlassIt: Using xprop for transparency on ${codeWindowIds.length} windows`);
@@ -309,6 +344,7 @@ function activate(context) {
                             if (successCount > 0) {
                                 console.log(`GlassIt: Successfully updated ${successCount}/${codeWindowIds.length} windows`);
                                 config().update('alpha', alpha, true);
+                                updateStatusBar(alpha);
                             } else {
                                 const errorMsg = `GlassIt: Failed to update any windows (${errorCount} errors)`;
                                 console.error(errorMsg);
@@ -383,7 +419,16 @@ function activate(context) {
             setAlpha(Math.round(255 * 0.25)); // 75% transparency = 25% opacity
         }));
 
+        context.subscriptions.push(commands.registerCommand('glassit.reset_default', () => {
+            console.log('GlassIt: Reset to default transparency command triggered');
+            const defaultAlpha = 220; // Original default value
+            setAlpha(defaultAlpha);
+        }));
+
         console.log('GlassIt: All commands registered successfully');
+        
+        // Create status bar item
+        createStatusBarItem();
         
         // Apply initial transparency (use theme-specific if configured)
         const alpha = getThemeAlpha();
@@ -399,5 +444,6 @@ function activate(context) {
 exports.activate = activate;
 
 function deactivate() {
+    console.log('GlassIt: Extension deactivated');
 }
 exports.deactivate = deactivate;

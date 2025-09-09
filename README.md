@@ -33,6 +33,7 @@ Change the transparency level by:
 * Press "Ctrl+Alt+X" to minimize transparency (opaque)
 * Press "Ctrl+Alt+T" to toggle preset transparency (10%)
 * Use Command Palette: "GlassIt: [command name]"
+* View current transparency level in the status bar (click to reset)
 
 ## Extension Settings
 
@@ -42,6 +43,7 @@ Change the transparency level by:
 * `glassit.alpha_light` (`integer`): Transparency level for light themes [1-255].
 * `glassit.alpha_dark` (`integer`): Transparency level for dark themes [1-255].
 * `glassit.enable_keybindings` (`boolean`): Enable/disable keyboard shortcuts.
+* `glassit.show_status` (`boolean`): Show transparency level in status bar.
 
 ## Troubleshooting
 
