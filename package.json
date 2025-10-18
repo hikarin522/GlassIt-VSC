@@ -1,6 +1,7 @@
 {
   "name": "glassit",
   "displayName": "GlassIt-VSC",
+  "icon": "assets/icon.png",
   "description": "VS Code Extension to set window to transparent on Windows and Linux platforms.",
   "version": "0.2.6",
   "publisher": "s-nlf-fh",
@@ -103,3 +104,4 @@
     "node-powershell": "^4.0.0"
   }
 }
+
