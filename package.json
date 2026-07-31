@@ -41,7 +41,10 @@
     "email": "hikarin522@outlook.jp"
   },
   "activationEvents": [
-    "*"
+    "onCommand:glassit.increase",
+    "onCommand:glassit.decrease",
+    "onCommand:glassit.maximize",
+    "onCommand:glassit.minimize"
   ],
   "main": "./extension",
   "contributes": {
@@ -50,8 +53,8 @@
       "properties": {
         "glassit.alpha": {
           "type": "integer",
-          "default": 220,
-          "description": "Transparency level [1-255]"
+          "default": 180,
+          "description": "Transparency level [1-255]. Lower values make the blur effect more noticeable."
         },
         "glassit.step": {
           "type": "integer",

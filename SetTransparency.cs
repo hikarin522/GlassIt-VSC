@@ -34,7 +34,14 @@ namespace GlassIt
 
                     WS windowLong = User32.GetWindowLong(hWnd, GWL.EXSTYLE);
                     User32.SetWindowLong(hWnd, GWL.EXSTYLE, windowLong | WS.EX_LAYERED);
-                    return User32.SetLayeredWindowAttributes(hWnd, 0, alpha, LWA.ALPHA);
+
+                    if (!User32.SetLayeredWindowAttributes(hWnd, 0, alpha, LWA.ALPHA))
+                    {
+                        return false;
+                    }
+
+                    User32.EnableBlurBehindWindow(hWnd);
+                    return true;
                 }, IntPtr.Zero);
 
                 if (!result)
@@ -71,6 +78,40 @@ namespace Windows
 
         [DllImport("user32.dll")]
         public static extern bool SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, LWA dwFlags);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowCompositionAttribute(IntPtr hWnd, ref WindowCompositionAttribData data);
+
+        public static void EnableBlurBehindWindow(IntPtr hWnd)
+        {
+            var accent = new AccentPolicy
+            {
+                AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND,
+                AccentFlags = 0x20,
+                GradientColor = 0x00000000,
+                AnimationId = 0
+            };
+
+            var data = new WindowCompositionAttribData
+            {
+                Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY,
+                SizeOfData = Marshal.SizeOf(accent),
+                Data = Marshal.AllocHGlobal(Marshal.SizeOf(accent))
+            };
+
+            try
+            {
+                Marshal.StructureToPtr(accent, data.Data, false);
+                SetWindowCompositionAttribute(hWnd, ref data);
+            }
+            finally
+            {
+                if (data.Data != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(data.Data);
+                }
+            }
+        }
     }
 
     internal enum GWL: int
@@ -94,5 +135,36 @@ namespace Windows
     {
         COLORKEY = 1,
         ALPHA = 2,
+    }
+
+    internal enum AccentState
+    {
+        ACCENT_DISABLED = 0,
+        ACCENT_ENABLE_GRADIENT = 1,
+        ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
+        ACCENT_ENABLE_BLURBEHIND = 3,
+        ACCENT_INVALID_STATE = 4
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AccentPolicy
+    {
+        public AccentState AccentState;
+        public int AccentFlags;
+        public int GradientColor;
+        public int AnimationId;
+    }
+
+    internal enum WindowCompositionAttribute
+    {
+        WCA_ACCENT_POLICY = 19
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct WindowCompositionAttribData
+    {
+        public WindowCompositionAttribute Attribute;
+        public IntPtr Data;
+        public int SizeOfData;
     }
 }
