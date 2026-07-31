@@ -4,7 +4,7 @@
 [![VSMI]][VSM]
 [![VSMR]][VSM]
 
-VS Code Extension to set window to transparent on Windows and Linux platforms.
+VS Code Extension to set window to transparent on Windows and Linux platforms, with a more pronounced blurred background effect on Windows.
 
 This extension is the VS Code version of [GlassIt] of Sublime Text plugin.
 
